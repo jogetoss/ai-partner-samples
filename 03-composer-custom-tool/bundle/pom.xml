@@ -21,7 +21,7 @@
         <agent-builder.version>8.2.5-ALPHA</agent-builder.version>
         <!-- Public libraries the platform classes refer to. Compile only; Joget supplies its own copies at run time. -->
         <spring.version>5.3.39</spring.version>
-        <json.version>20231013</json.version>
+        <json.version>20260719</json.version>
         <osgi.version>6.0.0</osgi.version>
     </properties>
 
