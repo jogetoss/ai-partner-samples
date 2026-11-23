@@ -8,6 +8,6 @@
   },
   "dependencies": {
     "adm-zip": "^0.5.16",
-    "puppeteer-core": "^24.0.0"
+    "puppeteer-core": "^25.18.1"
   }
 }
