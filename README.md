@@ -43,7 +43,7 @@ Other files:
 | Apache Maven | 3.8 or later | building samples 01, 02, 03, 06 and 07 |
 | Composer MCP plugin | the plugin jar; Joget DX 9.1 or later | sample 05 |
 | `bash` and `curl` | any | `05-composer-mcp/smoke-test.sh` (on Windows use Git Bash) |
-| Node.js and Chrome, Chromium or Edge | Node 18 or later | only the optional scripts |
+| Node.js and Chrome, Chromium or Edge | Node 22.12 or later | only the optional scripts |
 
 Agent Builder is a Joget DX Enterprise feature. The samples were built and run on Joget DX 9.1.2
 Enterprise. Use Joget DX 9.1 or later for everything in this repository; Composer MCP requires it.

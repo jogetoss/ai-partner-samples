@@ -29,7 +29,7 @@ Audience: implementers and plugin developers who already know Joget DX. Group si
 1. **Version.** Confirm the partner's Joget version. Everything here needs Joget DX 9.1 or later and an Enterprise licence with Agent Builder.
 2. **Scope.** Agree which samples to cover (see the agendas in section 4).
 3. **Server.** Prepare a development Joget server for each participant, or one shared server with one app per participant. Install the Agent Builder plugin and set up an AI credential and AI service in **Settings > AI Central Config**. Test one agent run yourself.
-4. **Machines.** Each developer needs JDK 17, Maven 3.8 or later, Git, and Node 18 or later for the optional scripts. Ask them to run `00-setup/check-install.js` before the day.
+4. **Machines.** Each developer needs JDK 17, Maven 3.8 or later, Git, and Node 22.12 or later for the optional scripts. Ask them to run `00-setup/check-install.js` before the day.
 5. **Models and cost.** Agree who pays for model usage. A full day with 5 participants is a small amount, but set a spending limit on the credential.
 6. **Build once yourself** (`mvn clean package "-Djoget.version=9.1.2"` in each sample folder) so you know the build works on the same network.
 7. **Access.** Make sure the partner can reach the repository and the two plugin jars.

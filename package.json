@@ -4,10 +4,10 @@
   "private": true,
   "description": "Optional helper scripts for the Agent Builder examples repository. The Java samples do not need Node.",
   "engines": {
-    "node": ">=18"
+    "node": ">=22.12.0"
   },
   "dependencies": {
-    "adm-zip": "^0.5.16",
-    "puppeteer-core": "^24.0.0"
+    "adm-zip": "^0.6.1",
+    "puppeteer-core": "^25.18.1"
   }
 }

@@ -40,7 +40,7 @@ The business data in the samples (cost centres, departments, approval matrix, na
 | Apache Maven | 3.8 or later | building samples 01, 02, 03, 06 and 07 |
 | Composer MCP plugin | the plugin jar. Joget DX 9.1 or later | sample 05 |
 | `bash` and `curl` | any. On Windows use Git Bash | `05-composer-mcp/smoke-test.sh` |
-| Node.js and Chrome, Chromium or Edge | Node.js 18 or later | only the optional scripts |
+| Node.js and Chrome, Chromium or Edge | Node.js 22.12 or later | only the optional scripts |
 
 Install Agent Builder and configure an AI service first. See [Installing and Setting Up Your Joget Instance](02-installation-and-setup.md) and [AI Central Config Reference](03-ai-central-config.md).
 

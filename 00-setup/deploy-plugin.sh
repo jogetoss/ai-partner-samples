@@ -40,7 +40,7 @@ if [ "$MODE" = "--via-copy" ]; then
   cp "$JAR" "$LIVE"
   echo "Copied to $LIVE. Joget loads it within a few seconds."
 else
-  command -v node >/dev/null 2>&1 || { echo "node is not on the PATH. Install Node.js 18 or later, or use --via-copy, or upload the jar in the console." >&2; exit 1; }
+  command -v node >/dev/null 2>&1 || { echo "node is not on the PATH. Install Node.js 22.12 or later, or use --via-copy, or upload the jar in the console." >&2; exit 1; }
   node "$HERE/deploy-upload.js" "$JAR"
 fi
 

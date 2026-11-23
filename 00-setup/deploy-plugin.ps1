@@ -57,7 +57,7 @@ if ($ViaCopy) {
   Copy-Item $Jar $live -Force
   Write-Host "Copied to $live. Joget loads it within a few seconds."
 } else {
-  if (-not (Get-Command node -ErrorAction SilentlyContinue)) { throw "node is not on the PATH. Install Node.js 18 or later, or use -ViaCopy, or upload the jar in the console." }
+  if (-not (Get-Command node -ErrorAction SilentlyContinue)) { throw "node is not on the PATH. Install Node.js 22.12 or later, or use -ViaCopy, or upload the jar in the console." }
   $env:JW_BASE = $Base
   & node (Join-Path $PSScriptRoot "deploy-upload.js") $Jar
   if ($LASTEXITCODE -ne 0) { throw "The upload failed." }
