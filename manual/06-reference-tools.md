@@ -8,7 +8,7 @@ A tool is a function that the model can ask the agent to run. For each tool on a
 
 You add a tool to a task by dragging it from the **Tools** section of the palette onto the task. The palette has these sections: **LLM Services**, **Prompts**, **Tools**, **Tool Templates**, **Enhancers**, **Decisions** and **Guards**. **Tool Templates** are saved, pre-configured copies of tools. You manage them in AI Central Config, and you can read about them in [Skills, Central Instructions and Tool Templates](22-skills-and-tool-templates.md).
 
-The screenshot comes from an instance that also has the sample plugins of the examples repository and some add-on plugins installed. Entries such as **Indonesian ID Validator**, **Acme Standards Lookup**, **App Naming Check** and **Upgrade Advisor scan** are not part of Agent Builder. They appear in your palette only when you install those plugins. The tools in the screenshot are listed in alphabetical order of their class name, not of their label, so the order on your screen may differ slightly.
+Your palette may also list tools from the sample plugins of the examples repository and from add-on plugins. Entries such as **Indonesian ID Validator**, **Acme Standards Lookup**, **App Naming Check** and **Upgrade Advisor scan** are not part of Agent Builder. They appear in your palette only when you install those plugins. The tools are listed in alphabetical order of their class name, not of their label, so the order on your screen may differ slightly.
 
 ### Properties every tool has
 
