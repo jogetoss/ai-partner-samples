@@ -1,0 +1,357 @@
+{
+  "id": "approval_inbox",
+  "name": "Kotak Masuk Persetujuan",
+  "description": "Tugas persetujuan yang menunggu pengguna (dipakai oleh menu kotak masuk).",
+  "binder": {
+    "className": "org.joget.plugin.enterprise.AdvancedFormRowDataListBinder",
+    "properties": {
+      "formDefId": "purchase_request",
+      "joins": [],
+      "having": [],
+      "aggregateField": [],
+      "extraCondition": "",
+      "filters": [],
+      "groupBy": ""
+    }
+  },
+  "template": {
+    "className": "",
+    "properties": {}
+  },
+  "columns": [
+    {
+      "id": "column_0",
+      "name": "acme_request_no",
+      "label": "No. Permintaan",
+      "datalist_type": "column",
+      "hidden": "false",
+      "sortable": "true",
+      "filterable": true,
+      "renderHtml": "",
+      "width": "",
+      "alignment": "",
+      "headerAlignment": "",
+      "style": "",
+      "exclude_export": "",
+      "include_export": "",
+      "format": {
+        "className": "",
+        "properties": {}
+      },
+      "action": {
+        "className": "",
+        "properties": {}
+      },
+      "style-font-weight": "600"
+    },
+    {
+      "id": "column_1",
+      "name": "acme_requester",
+      "label": "Pemohon",
+      "datalist_type": "column",
+      "hidden": "false",
+      "sortable": "true",
+      "filterable": true,
+      "renderHtml": "",
+      "width": "",
+      "alignment": "",
+      "headerAlignment": "",
+      "style": "",
+      "exclude_export": "",
+      "include_export": "",
+      "format": {
+        "className": "",
+        "properties": {}
+      },
+      "action": {
+        "className": "",
+        "properties": {}
+      }
+    },
+    {
+      "id": "column_2",
+      "name": "acme_department",
+      "label": "Departemen",
+      "datalist_type": "column",
+      "hidden": "false",
+      "sortable": "true",
+      "filterable": true,
+      "renderHtml": "",
+      "width": "",
+      "alignment": "",
+      "headerAlignment": "",
+      "style": "",
+      "exclude_export": "",
+      "include_export": "",
+      "format": {
+        "className": "org.joget.plugin.enterprise.OptionsValueFormatter",
+        "properties": {
+          "options": [
+            {
+              "value": "finance",
+              "label": "Keuangan",
+              "grouping": ""
+            },
+            {
+              "value": "it",
+              "label": "Teknologi Informasi",
+              "grouping": ""
+            },
+            {
+              "value": "hr",
+              "label": "Sumber Daya Manusia",
+              "grouping": ""
+            },
+            {
+              "value": "operations",
+              "label": "Operasional",
+              "grouping": ""
+            },
+            {
+              "value": "procurement",
+              "label": "Pengadaan",
+              "grouping": ""
+            }
+          ],
+          "optionsBinder": {
+            "className": "",
+            "properties": {}
+          }
+        }
+      },
+      "action": {
+        "className": "",
+        "properties": {}
+      }
+    },
+    {
+      "id": "column_3",
+      "name": "acme_total_amount",
+      "label": "Jumlah (Rp)",
+      "datalist_type": "column",
+      "hidden": "false",
+      "sortable": "true",
+      "filterable": true,
+      "renderHtml": "",
+      "width": "",
+      "alignment": "dataListAlignRight",
+      "headerAlignment": "dataListAlignRight",
+      "style": "",
+      "exclude_export": "",
+      "include_export": "",
+      "format": {
+        "className": "org.joget.plugin.enterprise.BeanShellFormatter",
+        "properties": {
+          "script": "// Shows the stored amount as Rp 1.250.000 (dot thousands separator).\nif (value == null || value.trim().length() == 0) { return \"\"; }\ntry {\n    java.text.DecimalFormatSymbols s = new java.text.DecimalFormatSymbols();\n    s.setGroupingSeparator('.');\n    s.setDecimalSeparator(',');\n    java.text.DecimalFormat f = new java.text.DecimalFormat(\"#,##0\", s);\n    String raw = value.split(\",\")[0].replaceAll(\"[^0-9.]\", \"\");\n    return \"Rp \" + f.format(Double.parseDouble(raw));\n} catch (Exception e) {\n    return value;\n}"
+        }
+      },
+      "action": {
+        "className": "",
+        "properties": {}
+      }
+    },
+    {
+      "id": "column_4",
+      "name": "acme_status",
+      "label": "Status",
+      "datalist_type": "column",
+      "hidden": "false",
+      "sortable": "true",
+      "filterable": true,
+      "renderHtml": "true",
+      "width": "",
+      "alignment": "",
+      "headerAlignment": "",
+      "style": "",
+      "exclude_export": "",
+      "include_export": "",
+      "format": {
+        "className": "org.joget.plugin.enterprise.OptionsValueFormatter",
+        "properties": {
+          "options": [
+            {
+              "value": "draft",
+              "label": "<span class=\"acme-pill acme-pill-draft\" style=\"display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:600;line-height:18px;white-space:nowrap;background:rgb(241,245,249);color:rgb(71,85,105);\"><span style=\"width:6px;height:6px;border-radius:50%;background:rgb(148,163,184);display:inline-block;\"></span>Draf</span>",
+              "grouping": ""
+            },
+            {
+              "value": "submitted",
+              "label": "<span class=\"acme-pill acme-pill-submitted\" style=\"display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:600;line-height:18px;white-space:nowrap;background:rgb(219,234,254);color:rgb(30,64,175);\"><span style=\"width:6px;height:6px;border-radius:50%;background:rgb(59,130,246);display:inline-block;\"></span>Diajukan</span>",
+              "grouping": ""
+            },
+            {
+              "value": "approved",
+              "label": "<span class=\"acme-pill acme-pill-approved\" style=\"display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:600;line-height:18px;white-space:nowrap;background:rgb(220,252,231);color:rgb(22,101,52);\"><span style=\"width:6px;height:6px;border-radius:50%;background:rgb(34,197,94);display:inline-block;\"></span>Disetujui</span>",
+              "grouping": ""
+            },
+            {
+              "value": "rejected",
+              "label": "<span class=\"acme-pill acme-pill-rejected\" style=\"display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:600;line-height:18px;white-space:nowrap;background:rgb(254,226,226);color:rgb(153,27,27);\"><span style=\"width:6px;height:6px;border-radius:50%;background:rgb(239,68,68);display:inline-block;\"></span>Ditolak</span>",
+              "grouping": ""
+            }
+          ],
+          "optionsBinder": {
+            "className": "",
+            "properties": {}
+          }
+        }
+      },
+      "action": {
+        "className": "",
+        "properties": {}
+      }
+    },
+    {
+      "id": "column_5",
+      "name": "dateCreated",
+      "label": "Tanggal Dibuat",
+      "datalist_type": "column",
+      "hidden": "false",
+      "sortable": "true",
+      "filterable": true,
+      "renderHtml": "",
+      "width": "",
+      "alignment": "",
+      "headerAlignment": "",
+      "style": "",
+      "exclude_export": "",
+      "include_export": "",
+      "format": {
+        "className": "",
+        "properties": {}
+      },
+      "action": {
+        "className": "",
+        "properties": {}
+      }
+    }
+  ],
+  "filters": [
+    {
+      "id": "filter_0",
+      "name": "acme_request_no",
+      "label": "No. Permintaan",
+      "filterParamName": "d-2078276-fn_acme_request_no",
+      "hidden": "",
+      "datalist_type": "filter",
+      "type": {
+        "className": "org.joget.apps.datalist.lib.TextFieldDataListFilterType",
+        "properties": {
+          "defaultValue": ""
+        }
+      }
+    },
+    {
+      "id": "filter_1",
+      "name": "acme_status",
+      "label": "Status",
+      "filterParamName": "d-2078276-fn_acme_status",
+      "hidden": "",
+      "datalist_type": "filter",
+      "type": {
+        "className": "org.joget.plugin.enterprise.SelectBoxDataListFilterType",
+        "properties": {
+          "size": "",
+          "multiple": "",
+          "defaultValue": "",
+          "options": [
+            {
+              "value": "",
+              "label": "Semua",
+              "grouping": ""
+            },
+            {
+              "value": "draft",
+              "label": "Draf",
+              "grouping": ""
+            },
+            {
+              "value": "submitted",
+              "label": "Diajukan",
+              "grouping": ""
+            },
+            {
+              "value": "approved",
+              "label": "Disetujui",
+              "grouping": ""
+            },
+            {
+              "value": "rejected",
+              "label": "Ditolak",
+              "grouping": ""
+            }
+          ],
+          "optionsBinder": {
+            "className": "",
+            "properties": {}
+          }
+        }
+      }
+    },
+    {
+      "id": "filter_2",
+      "name": "acme_department",
+      "label": "Departemen",
+      "filterParamName": "d-2078276-fn_acme_department",
+      "hidden": "",
+      "datalist_type": "filter",
+      "type": {
+        "className": "org.joget.plugin.enterprise.SelectBoxDataListFilterType",
+        "properties": {
+          "size": "",
+          "multiple": "",
+          "defaultValue": "",
+          "options": [
+            {
+              "value": "",
+              "label": "Semua",
+              "grouping": ""
+            },
+            {
+              "value": "finance",
+              "label": "Keuangan",
+              "grouping": ""
+            },
+            {
+              "value": "it",
+              "label": "Teknologi Informasi",
+              "grouping": ""
+            },
+            {
+              "value": "hr",
+              "label": "Sumber Daya Manusia",
+              "grouping": ""
+            },
+            {
+              "value": "operations",
+              "label": "Operasional",
+              "grouping": ""
+            },
+            {
+              "value": "procurement",
+              "label": "Pengadaan",
+              "grouping": ""
+            }
+          ],
+          "optionsBinder": {
+            "className": "",
+            "properties": {}
+          }
+        }
+      }
+    }
+  ],
+  "rowActions": [],
+  "actions": [],
+  "pageSize": "10",
+  "orderBy": "dateCreated",
+  "order": "1",
+  "checkboxPosition": "left",
+  "buttonPosition": "bottomLeft",
+  "showPageSizeSelector": "true",
+  "pageSizeSelectorOptions": "10,20,30,40,50,100",
+  "useSession": "",
+  "showDataWhenFilterSet": "",
+  "considerFilterWhenGetTotal": "",
+  "hidePageSize": ""
+}

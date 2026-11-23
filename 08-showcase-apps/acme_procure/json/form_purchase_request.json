@@ -1,0 +1,716 @@
+{
+  "className": "org.joget.apps.form.model.Form",
+  "properties": {
+    "id": "purchase_request",
+    "name": "Permintaan Pembelian",
+    "tableName": "tbl_purchase_request",
+    "description": "Formulir permintaan pembelian Acme. Formulir awal proses purchase_request dan tampilan baca-saja di daftar.",
+    "loadBinder": {
+      "className": "org.joget.apps.form.lib.WorkflowFormBinder",
+      "properties": {}
+    },
+    "storeBinder": {
+      "className": "org.joget.apps.form.lib.WorkflowFormBinder",
+      "properties": {}
+    },
+    "permission": {
+      "className": "",
+      "properties": {}
+    },
+    "noPermissionMessage": "",
+    "postProcessor": {
+      "className": "",
+      "properties": {}
+    },
+    "postProcessorRunOn": "both"
+  },
+  "elements": [
+    {
+      "className": "org.joget.apps.form.model.Section",
+      "properties": {
+        "id": "sec_requester",
+        "label": "Data Pemohon",
+        "readonly": "",
+        "readonlyLabel": "",
+        "comment": "",
+        "visibilityControl": "",
+        "visibilityValue": "",
+        "regex": "",
+        "reverse": "",
+        "join": "",
+        "permissionReadonly": "",
+        "permission": {
+          "className": "",
+          "properties": {}
+        },
+        "loadBinder": {
+          "className": "",
+          "properties": {}
+        },
+        "storeBinder": {
+          "className": "",
+          "properties": {}
+        }
+      },
+      "elements": [
+        {
+          "className": "org.joget.apps.form.model.Column",
+          "properties": {
+            "width": "50%"
+          },
+          "elements": [
+            {
+              "className": "org.joget.apps.form.lib.IdGeneratorField",
+              "properties": {
+                "id": "acme_request_no",
+                "label": "No. Permintaan",
+                "envVariable": "acme_request_counter",
+                "format": "REQ/#date.yyyy#/?????",
+                "hidden": "",
+                "workflowVariable": "",
+                "isDistributedGeneration": ""
+              }
+            },
+            {
+              "className": "org.joget.apps.form.lib.TextField",
+              "properties": {
+                "id": "acme_requester",
+                "label": "Nama Pemohon",
+                "value": "#currentUser.fullName#",
+                "placeholder": "",
+                "maxlength": "",
+                "size": "",
+                "readonly": "true",
+                "readonlyLabel": "",
+                "workflowVariable": "",
+                "validator": {
+                  "className": "",
+                  "properties": {}
+                },
+                "encryption": "",
+                "style": "",
+                "storeNumeric": "",
+                "requiredSanitize": "",
+                "disableIncrementDecrementArrow": ""
+              }
+            },
+            {
+              "className": "org.joget.apps.form.lib.HiddenField",
+              "properties": {
+                "id": "acme_requester_id",
+                "value": "#currentUser.username#",
+                "useDefaultWhenEmpty": "",
+                "workflowVariable": ""
+              }
+            },
+            {
+              "className": "org.joget.apps.form.lib.DatePicker",
+              "properties": {
+                "id": "acme_request_date",
+                "label": "Tanggal Permintaan",
+                "value": "#date.yyyy-MM-dd#",
+                "placeholder": "",
+                "dataFormat": "yyyy-MM-dd",
+                "format": "dd/mm/yy",
+                "yearRange": "c-10:c+10",
+                "allowManual": "",
+                "datePickerType": "",
+                "currentDateAs": "",
+                "disableWeekends": "",
+                "startDateFieldId": "",
+                "endDateFieldId": "",
+                "readonly": "true",
+                "readonlyLabel": "",
+                "workflowVariable": "",
+                "validator": {
+                  "className": "",
+                  "properties": {}
+                }
+              }
+            }
+          ]
+        },
+        {
+          "className": "org.joget.apps.form.model.Column",
+          "properties": {
+            "width": "50%"
+          },
+          "elements": [
+            {
+              "className": "org.joget.apps.form.lib.SelectBox",
+              "properties": {
+                "id": "acme_department",
+                "label": "Departemen",
+                "options": [
+                  {
+                    "value": "",
+                    "label": "",
+                    "grouping": ""
+                  },
+                  {
+                    "value": "finance",
+                    "label": "Keuangan",
+                    "grouping": ""
+                  },
+                  {
+                    "value": "it",
+                    "label": "Teknologi Informasi",
+                    "grouping": ""
+                  },
+                  {
+                    "value": "hr",
+                    "label": "Sumber Daya Manusia",
+                    "grouping": ""
+                  },
+                  {
+                    "value": "operations",
+                    "label": "Operasional",
+                    "grouping": ""
+                  },
+                  {
+                    "value": "procurement",
+                    "label": "Pengadaan",
+                    "grouping": ""
+                  }
+                ],
+                "optionsBinder": {
+                  "className": "",
+                  "properties": {}
+                },
+                "value": "",
+                "multiple": "",
+                "size": "",
+                "controlField": "",
+                "readonly": "",
+                "readonlyLabel": "",
+                "workflowVariable": "",
+                "validator": {
+                  "className": "org.joget.apps.form.lib.DefaultValidator",
+                  "properties": {
+                    "mandatory": "true",
+                    "type": "",
+                    "message": "",
+                    "custom-regex": ""
+                  }
+                }
+              }
+            },
+            {
+              "className": "org.joget.apps.form.lib.SelectBox",
+              "properties": {
+                "id": "acme_cost_centre",
+                "label": "Pusat Biaya",
+                "options": [
+                  {
+                    "value": "",
+                    "label": "",
+                    "grouping": ""
+                  },
+                  {
+                    "value": "CC-1000",
+                    "label": "CC-1000 - Kantor Pusat Jakarta",
+                    "grouping": ""
+                  },
+                  {
+                    "value": "CC-2000",
+                    "label": "CC-2000 - Cabang Surabaya",
+                    "grouping": ""
+                  },
+                  {
+                    "value": "CC-3000",
+                    "label": "CC-3000 - Cabang Bandung",
+                    "grouping": ""
+                  },
+                  {
+                    "value": "CC-4100",
+                    "label": "CC-4100 - Pusat Data",
+                    "grouping": ""
+                  }
+                ],
+                "optionsBinder": {
+                  "className": "",
+                  "properties": {}
+                },
+                "value": "",
+                "multiple": "",
+                "size": "",
+                "controlField": "",
+                "readonly": "",
+                "readonlyLabel": "",
+                "workflowVariable": "",
+                "validator": {
+                  "className": "org.joget.apps.form.lib.DefaultValidator",
+                  "properties": {
+                    "mandatory": "true",
+                    "type": "",
+                    "message": "",
+                    "custom-regex": ""
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "className": "org.joget.apps.form.model.Section",
+      "properties": {
+        "id": "sec_details",
+        "label": "",
+        "readonly": "",
+        "readonlyLabel": "",
+        "comment": "",
+        "visibilityControl": "",
+        "visibilityValue": "",
+        "regex": "",
+        "reverse": "",
+        "join": "",
+        "permissionReadonly": "",
+        "permission": {
+          "className": "",
+          "properties": {}
+        },
+        "loadBinder": {
+          "className": "",
+          "properties": {}
+        },
+        "storeBinder": {
+          "className": "",
+          "properties": {}
+        },
+        "header-style-display": "none"
+      },
+      "elements": [
+        {
+          "className": "org.joget.apps.form.model.Column",
+          "properties": {
+            "width": "100%"
+          },
+          "elements": [
+            {
+              "className": "org.joget.apps.form.lib.CustomHTML",
+              "properties": {
+                "id": "acme_details_head",
+                "label": "",
+                "value": "<div style=\"display:flex;align-items:baseline;gap:10px;margin:2px 0 12px 0;\"><span style=\"font-weight:700;font-size:15px;color:rgb(15,23,42);\">Rincian Pembelian</span><span style=\"font-size:12.5px;color:rgb(100,116,139);\">Jelaskan apa yang dibeli dan kapan dibutuhkan.</span></div>",
+                "autoPopulate": "",
+                "requiredSanitize": ""
+              }
+            }
+          ]
+        },
+        {
+          "className": "org.joget.apps.form.model.Column",
+          "properties": {
+            "width": "50%"
+          },
+          "elements": [
+            {
+              "className": "org.joget.apps.form.lib.TextField",
+              "properties": {
+                "id": "acme_title",
+                "label": "Judul Permintaan",
+                "value": "",
+                "placeholder": "contoh: Laptop untuk tim analis data",
+                "maxlength": "120",
+                "size": "",
+                "readonly": "",
+                "readonlyLabel": "",
+                "workflowVariable": "",
+                "validator": {
+                  "className": "org.joget.apps.form.lib.DefaultValidator",
+                  "properties": {
+                    "mandatory": "true",
+                    "type": "",
+                    "message": "",
+                    "custom-regex": ""
+                  }
+                },
+                "encryption": "",
+                "style": "",
+                "storeNumeric": "",
+                "requiredSanitize": "",
+                "disableIncrementDecrementArrow": ""
+              }
+            },
+            {
+              "className": "org.joget.apps.form.lib.SelectBox",
+              "properties": {
+                "id": "acme_category",
+                "label": "Kategori",
+                "options": [
+                  {
+                    "value": "",
+                    "label": "",
+                    "grouping": ""
+                  },
+                  {
+                    "value": "it_hardware",
+                    "label": "Perangkat Keras TI",
+                    "grouping": ""
+                  },
+                  {
+                    "value": "software",
+                    "label": "Perangkat Lunak dan Lisensi",
+                    "grouping": ""
+                  },
+                  {
+                    "value": "office_supplies",
+                    "label": "Perlengkapan Kantor",
+                    "grouping": ""
+                  },
+                  {
+                    "value": "services",
+                    "label": "Jasa",
+                    "grouping": ""
+                  },
+                  {
+                    "value": "other",
+                    "label": "Lainnya",
+                    "grouping": ""
+                  }
+                ],
+                "optionsBinder": {
+                  "className": "",
+                  "properties": {}
+                },
+                "value": "",
+                "multiple": "",
+                "size": "",
+                "controlField": "",
+                "readonly": "",
+                "readonlyLabel": "",
+                "workflowVariable": "",
+                "validator": {
+                  "className": "org.joget.apps.form.lib.DefaultValidator",
+                  "properties": {
+                    "mandatory": "true",
+                    "type": "",
+                    "message": "",
+                    "custom-regex": ""
+                  }
+                }
+              }
+            },
+            {
+              "className": "org.joget.apps.form.lib.TextField",
+              "properties": {
+                "id": "acme_vendor",
+                "label": "Usulan Pemasok",
+                "value": "",
+                "placeholder": "Opsional, nama pemasok yang Anda sarankan",
+                "maxlength": "",
+                "size": "",
+                "readonly": "",
+                "readonlyLabel": "",
+                "workflowVariable": "",
+                "validator": {
+                  "className": "",
+                  "properties": {}
+                },
+                "encryption": "",
+                "style": "",
+                "storeNumeric": "",
+                "requiredSanitize": "",
+                "disableIncrementDecrementArrow": ""
+              }
+            }
+          ]
+        },
+        {
+          "className": "org.joget.apps.form.model.Column",
+          "properties": {
+            "width": "50%"
+          },
+          "elements": [
+            {
+              "className": "org.joget.apps.form.lib.DatePicker",
+              "properties": {
+                "id": "acme_needed_date",
+                "label": "Tanggal Dibutuhkan",
+                "value": "",
+                "placeholder": "",
+                "dataFormat": "yyyy-MM-dd",
+                "format": "dd/mm/yy",
+                "yearRange": "c-10:c+10",
+                "allowManual": "",
+                "datePickerType": "",
+                "currentDateAs": "minDate",
+                "disableWeekends": "",
+                "startDateFieldId": "",
+                "endDateFieldId": "",
+                "readonly": "",
+                "readonlyLabel": "",
+                "workflowVariable": "",
+                "validator": {
+                  "className": "org.joget.apps.form.lib.DefaultValidator",
+                  "properties": {
+                    "mandatory": "true",
+                    "type": "",
+                    "message": "",
+                    "custom-regex": ""
+                  }
+                }
+              }
+            },
+            {
+              "className": "org.joget.apps.form.lib.Radio",
+              "properties": {
+                "id": "acme_priority",
+                "label": "Prioritas",
+                "options": [
+                  {
+                    "value": "normal",
+                    "label": "Normal",
+                    "grouping": ""
+                  },
+                  {
+                    "value": "urgent",
+                    "label": "Mendesak",
+                    "grouping": ""
+                  }
+                ],
+                "optionsBinder": {
+                  "className": "",
+                  "properties": {}
+                },
+                "value": "normal",
+                "fullWidth": "",
+                "controlField": "",
+                "readonly": "",
+                "readonlyLabel": "",
+                "workflowVariable": "",
+                "validator": {
+                  "className": "",
+                  "properties": {}
+                }
+              }
+            }
+          ]
+        },
+        {
+          "className": "org.joget.apps.form.model.Column",
+          "properties": {
+            "width": "100%"
+          },
+          "elements": [
+            {
+              "className": "org.joget.apps.form.lib.Grid",
+              "properties": {
+                "id": "acme_items",
+                "label": "Daftar Barang",
+                "options": [
+                  {
+                    "value": "acme_item",
+                    "label": "Nama Barang"
+                  },
+                  {
+                    "value": "acme_qty",
+                    "label": "Jumlah"
+                  },
+                  {
+                    "value": "acme_unit",
+                    "label": "Satuan"
+                  },
+                  {
+                    "value": "acme_unit_price",
+                    "label": "Harga Satuan (Rp)"
+                  }
+                ],
+                "readonly": "",
+                "validator": {
+                  "className": "",
+                  "properties": {}
+                },
+                "validateMinRow": "1",
+                "validateMaxRow": "",
+                "errorMessage": "Tambahkan minimal satu barang.",
+                "loadBinder": {
+                  "className": "",
+                  "properties": {}
+                },
+                "storeBinder": {
+                  "className": "",
+                  "properties": {}
+                }
+              }
+            }
+          ]
+        },
+        {
+          "className": "org.joget.apps.form.model.Column",
+          "properties": {
+            "width": "50%"
+          },
+          "elements": [
+            {
+              "className": "org.joget.apps.form.lib.TextField",
+              "properties": {
+                "id": "acme_total_amount",
+                "label": "Total Biaya (Rp)",
+                "value": "",
+                "placeholder": "Jumlah seluruh barang",
+                "maxlength": "",
+                "size": "",
+                "readonly": "",
+                "readonlyLabel": "",
+                "workflowVariable": "acme_total_amount",
+                "validator": {
+                  "className": "org.joget.apps.form.lib.DefaultValidator",
+                  "properties": {
+                    "mandatory": "true",
+                    "type": "numeric",
+                    "message": "",
+                    "custom-regex": ""
+                  }
+                },
+                "encryption": "",
+                "style": "euro",
+                "storeNumeric": "true",
+                "requiredSanitize": "",
+                "disableIncrementDecrementArrow": "",
+                "numOfDecimal": "0",
+                "useThousandSeparator": "true",
+                "prefix": "Rp",
+                "postfix": "",
+                "incrementValue": "",
+                "decrementValue": ""
+              }
+            }
+          ]
+        },
+        {
+          "className": "org.joget.apps.form.model.Column",
+          "properties": {
+            "width": "50%"
+          },
+          "elements": [
+            {
+              "className": "org.joget.apps.form.lib.CustomHTML",
+              "properties": {
+                "id": "acme_matrix_info",
+                "label": "",
+                "value": "<div style=\"border:1px solid rgba(15,23,42,0.08);border-radius:12px;background:rgba(13,148,136,0.05);padding:12px 14px;margin:4px 0 6px 0;\"><div style=\"font-weight:600;font-size:13px;color:rgb(15,118,110);margin-bottom:8px;\">Siapa yang menyetujui permintaan Anda?</div><div style=\"display:flex;flex-wrap:wrap;gap:8px;font-size:12.5px;color:rgb(15,23,42);\"><span style=\"background:rgb(255,255,255);border:1px solid rgba(15,23,42,0.08);border-radius:999px;padding:4px 10px;\">Sampai Rp5.000.000: Atasan Langsung</span><span style=\"background:rgb(255,255,255);border:1px solid rgba(15,23,42,0.08);border-radius:999px;padding:4px 10px;\">Sampai Rp50.000.000: Atasan + Kepala Departemen</span><span style=\"background:rgb(255,255,255);border:1px solid rgba(15,23,42,0.08);border-radius:999px;padding:4px 10px;\">Di atas Rp50.000.000: Atasan + Kepala Departemen + Direktur Keuangan</span></div></div>",
+                "autoPopulate": "",
+                "requiredSanitize": ""
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "className": "org.joget.apps.form.model.Section",
+      "properties": {
+        "id": "sec_justification",
+        "label": "",
+        "readonly": "",
+        "readonlyLabel": "",
+        "comment": "",
+        "visibilityControl": "",
+        "visibilityValue": "",
+        "regex": "",
+        "reverse": "",
+        "join": "",
+        "permissionReadonly": "",
+        "permission": {
+          "className": "",
+          "properties": {}
+        },
+        "loadBinder": {
+          "className": "",
+          "properties": {}
+        },
+        "storeBinder": {
+          "className": "",
+          "properties": {}
+        },
+        "header-style-display": "none"
+      },
+      "elements": [
+        {
+          "className": "org.joget.apps.form.model.Column",
+          "properties": {
+            "width": "100%"
+          },
+          "elements": [
+            {
+              "className": "org.joget.apps.form.lib.CustomHTML",
+              "properties": {
+                "id": "acme_just_head",
+                "label": "",
+                "value": "<div style=\"display:flex;align-items:baseline;gap:10px;margin:2px 0 12px 0;\"><span style=\"font-weight:700;font-size:15px;color:rgb(15,23,42);\">Justifikasi dan Lampiran</span><span style=\"font-size:12.5px;color:rgb(100,116,139);\">Alasan yang jelas mempercepat persetujuan.</span></div>",
+                "autoPopulate": "",
+                "requiredSanitize": ""
+              }
+            }
+          ]
+        },
+        {
+          "className": "org.joget.apps.form.model.Column",
+          "properties": {
+            "width": "100%"
+          },
+          "elements": [
+            {
+              "className": "org.joget.apps.form.lib.TextArea",
+              "properties": {
+                "id": "acme_justification",
+                "label": "Justifikasi Kebutuhan",
+                "value": "",
+                "placeholder": "Mengapa pembelian ini diperlukan, dan apa dampaknya bila ditunda?",
+                "rows": "4",
+                "cols": "50",
+                "readonly": "",
+                "readonlyLabel": "",
+                "workflowVariable": "",
+                "validator": {
+                  "className": "org.joget.apps.form.lib.DefaultValidator",
+                  "properties": {
+                    "mandatory": "true",
+                    "type": "",
+                    "message": "",
+                    "custom-regex": ""
+                  }
+                },
+                "requiredSanitize": ""
+              }
+            },
+            {
+              "className": "org.joget.apps.form.lib.FileUpload",
+              "properties": {
+                "id": "acme_attachment",
+                "label": "Lampiran (penawaran, spesifikasi)",
+                "validator": {
+                  "className": "",
+                  "properties": {}
+                },
+                "maxSize": "10240",
+                "maxSizeMsg": "Ukuran berkas melebihi batas 10 MB.",
+                "fileType": "",
+                "fileTypeMsg": "Jenis berkas tidak didukung.",
+                "removeFile": "",
+                "permissionType": "",
+                "size": "",
+                "multiple": "true",
+                "readonly": "",
+                "padding": "",
+                "attachment": "true"
+              }
+            },
+            {
+              "className": "org.joget.apps.form.lib.HiddenField",
+              "properties": {
+                "id": "acme_status",
+                "value": "submitted",
+                "useDefaultWhenEmpty": "",
+                "workflowVariable": ""
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

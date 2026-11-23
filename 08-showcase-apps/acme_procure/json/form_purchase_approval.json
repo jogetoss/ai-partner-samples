@@ -1,0 +1,223 @@
+{
+  "className": "org.joget.apps.form.model.Form",
+  "properties": {
+    "id": "purchase_approval",
+    "name": "Persetujuan Pembelian",
+    "tableName": "tbl_purchase_request",
+    "description": "Formulir persetujuan untuk langkah review_manager, review_head dan review_finance.",
+    "loadBinder": {
+      "className": "org.joget.apps.form.lib.WorkflowFormBinder",
+      "properties": {}
+    },
+    "storeBinder": {
+      "className": "org.joget.apps.form.lib.WorkflowFormBinder",
+      "properties": {}
+    },
+    "permission": {
+      "className": "",
+      "properties": {}
+    },
+    "noPermissionMessage": "",
+    "postProcessor": {
+      "className": "",
+      "properties": {}
+    },
+    "postProcessorRunOn": "both"
+  },
+  "elements": [
+    {
+      "className": "org.joget.apps.form.model.Section",
+      "properties": {
+        "id": "sec_request_view",
+        "label": "Ringkasan Permintaan",
+        "readonly": "",
+        "readonlyLabel": "",
+        "comment": "",
+        "visibilityControl": "",
+        "visibilityValue": "",
+        "regex": "",
+        "reverse": "",
+        "join": "",
+        "permissionReadonly": "",
+        "permission": {
+          "className": "",
+          "properties": {}
+        },
+        "loadBinder": {
+          "className": "",
+          "properties": {}
+        },
+        "storeBinder": {
+          "className": "",
+          "properties": {}
+        }
+      },
+      "elements": [
+        {
+          "className": "org.joget.apps.form.model.Column",
+          "properties": {
+            "width": "100%"
+          },
+          "elements": [
+            {
+              "className": "org.joget.apps.form.lib.SubForm",
+              "properties": {
+                "id": "acme_request_view",
+                "label": "",
+                "formDefId": "purchase_request",
+                "readonly": "true",
+                "readonlyLabel": "",
+                "noframe": "",
+                "parentSubFormId": "",
+                "subFormParentId": "",
+                "permissionHidden": "",
+                "loadBinder": {
+                  "className": "org.joget.apps.form.lib.WorkflowFormBinder",
+                  "properties": {}
+                },
+                "storeBinder": {
+                  "className": "org.joget.apps.form.lib.WorkflowFormBinder",
+                  "properties": {}
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "className": "org.joget.apps.form.model.Section",
+      "properties": {
+        "id": "sec_decision",
+        "label": "Keputusan Persetujuan",
+        "readonly": "",
+        "readonlyLabel": "",
+        "comment": "",
+        "visibilityControl": "",
+        "visibilityValue": "",
+        "regex": "",
+        "reverse": "",
+        "join": "",
+        "permissionReadonly": "",
+        "permission": {
+          "className": "",
+          "properties": {}
+        },
+        "loadBinder": {
+          "className": "",
+          "properties": {}
+        },
+        "storeBinder": {
+          "className": "",
+          "properties": {}
+        }
+      },
+      "elements": [
+        {
+          "className": "org.joget.apps.form.model.Column",
+          "properties": {
+            "width": "100%"
+          },
+          "elements": [
+            {
+              "className": "org.joget.apps.form.lib.CustomHTML",
+              "properties": {
+                "id": "acme_decision_info",
+                "label": "",
+                "value": "<div style=\"font-size:13px;color:rgb(100,116,139);margin:0 0 10px 0;\">Pilih <b style=\"color:rgb(15,23,42);\">Setujui</b> untuk meneruskan permintaan ke langkah berikutnya sesuai matriks persetujuan, atau <b style=\"color:rgb(15,23,42);\">Tolak</b> untuk menutupnya. Catatan wajib diisi bila Anda menolak.</div>",
+                "autoPopulate": "",
+                "requiredSanitize": ""
+              }
+            }
+          ]
+        },
+        {
+          "className": "org.joget.apps.form.model.Column",
+          "properties": {
+            "width": "100%"
+          },
+          "elements": [
+            {
+              "className": "org.joget.apps.form.lib.Radio",
+              "properties": {
+                "id": "acme_decision",
+                "label": "Keputusan",
+                "options": [
+                  {
+                    "value": "approved",
+                    "label": "Setujui",
+                    "grouping": ""
+                  },
+                  {
+                    "value": "rejected",
+                    "label": "Tolak",
+                    "grouping": ""
+                  }
+                ],
+                "optionsBinder": {
+                  "className": "",
+                  "properties": {}
+                },
+                "value": "",
+                "fullWidth": "",
+                "controlField": "",
+                "readonly": "",
+                "readonlyLabel": "",
+                "workflowVariable": "acme_decision",
+                "validator": {
+                  "className": "org.joget.apps.form.lib.DefaultValidator",
+                  "properties": {
+                    "mandatory": "true",
+                    "type": "",
+                    "message": "",
+                    "custom-regex": ""
+                  }
+                }
+              }
+            },
+            {
+              "className": "org.joget.apps.form.lib.TextArea",
+              "properties": {
+                "id": "acme_remarks",
+                "label": "Catatan Persetujuan",
+                "value": "",
+                "placeholder": "Alasan keputusan, terutama bila permintaan ditolak",
+                "rows": "3",
+                "cols": "50",
+                "readonly": "",
+                "readonlyLabel": "",
+                "workflowVariable": "",
+                "validator": {
+                  "className": "org.joget.apps.form.lib.BeanShellValidator",
+                  "properties": {
+                    "decoration": "",
+                    "script": "import org.joget.apps.form.model.Element;\nimport org.joget.apps.form.model.Form;\nimport org.joget.apps.form.service.FormUtil;\n\n// APP-5: remarks are required when the approver chooses Tolak (rejected).\nForm root = FormUtil.findRootForm(element);\nElement decisionField = FormUtil.findElement(\"acme_decision\", root, formData);\nString decision = \"\";\nif (decisionField != null) {\n    String[] d = FormUtil.getElementPropertyValues(decisionField, formData);\n    if (d != null && d.length > 0 && d[0] != null) { decision = d[0]; }\n}\nif (\"rejected\".equals(decision) && (values == null || values.length == 0 || values[0] == null || values[0].trim().length() == 0)) {\n    formData.addFormError(FormUtil.getElementParameterName(element), \"Catatan wajib diisi bila permintaan ditolak.\");\n    return false;\n}\nreturn true;"
+                  }
+                },
+                "requiredSanitize": ""
+              }
+            },
+            {
+              "className": "org.joget.apps.form.lib.HiddenField",
+              "properties": {
+                "id": "acme_approver",
+                "value": "#currentUser.fullName#",
+                "useDefaultWhenEmpty": "",
+                "workflowVariable": ""
+              }
+            },
+            {
+              "className": "org.joget.apps.form.lib.HiddenField",
+              "properties": {
+                "id": "acme_decision_date",
+                "value": "#date.yyyy-MM-dd#",
+                "useDefaultWhenEmpty": "",
+                "workflowVariable": ""
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

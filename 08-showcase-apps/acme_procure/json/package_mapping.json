@@ -1,0 +1,61 @@
+{
+  "forms": [
+    [
+      "runProcess",
+      "purchase_request"
+    ],
+    [
+      "review_manager",
+      "purchase_approval"
+    ],
+    [
+      "review_head",
+      "purchase_approval"
+    ],
+    [
+      "review_finance",
+      "purchase_approval"
+    ]
+  ],
+  "tools": [
+    [
+      "submit",
+      "submitted"
+    ],
+    [
+      "done",
+      "approved"
+    ],
+    [
+      "rejected",
+      "rejected"
+    ]
+  ],
+  "participants": [
+    [
+      "requester",
+      "requester",
+      "runProcess"
+    ],
+    [
+      "line_manager",
+      "user",
+      "admin"
+    ],
+    [
+      "department_head",
+      "user",
+      "admin"
+    ],
+    [
+      "finance_director",
+      "user",
+      "admin"
+    ],
+    [
+      "processStartWhiteList",
+      "role",
+      "loggedInUser"
+    ]
+  ]
+}
