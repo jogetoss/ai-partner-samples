@@ -1,0 +1,13 @@
+{
+  "name": "agent-builder-examples-scripts",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Optional helper scripts for the Agent Builder examples repository. The Java samples do not need Node.",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "adm-zip": "^0.5.16",
+    "puppeteer-core": "^24.0.0"
+  }
+}

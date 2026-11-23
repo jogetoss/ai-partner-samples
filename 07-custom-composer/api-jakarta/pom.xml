@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.joget.samples</groupId>
+    <artifactId>agent-builder-api-jakarta</artifactId>
+    <packaging>jar</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <name>agent-builder-api-jakarta</name>
+    <description>The Agent Builder API jar with javax.servlet and javax.websocket renamed to jakarta. Compile time only: never install or embed it.</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- The Agent Builder API jar, installed by 00-setup/install-api-jar. -->
+        <agent-builder.version>8.2.5-ALPHA</agent-builder.version>
+    </properties>
+
+    <!--
+        Why this module exists. The Agent Builder API jar is compiled with the javax.servlet and javax.websocket
+        packages. Joget DX 9 uses jakarta.servlet and jakarta.websocket, and converts the Agent Builder plugin to
+        jakarta when the plugin is installed. A class that extends AbstractComposerChat overrides methods that take
+        servlet and websocket types, so it must be compiled against the same (jakarta) form of the API that runs on
+        the server. This module produces that form with the Eclipse Transformer, the tool Joget DX 9 itself uses.
+        The module has no source code: the transformer plugin takes the place of the normal jar step.
+    -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.eclipse.transformer</groupId>
+                <artifactId>transformer-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <rules>
+                        <jakartaDefaults>true</jakartaDefaults>
+                    </rules>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>default-jar</id>
+                        <goals><goal>jar</goal></goals>
+                        <configuration>
+                            <artifact>
+                                <groupId>org.joget.ai.agent</groupId>
+                                <artifactId>agent-builder-api</artifactId>
+                                <version>${agent-builder.version}</version>
+                            </artifact>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

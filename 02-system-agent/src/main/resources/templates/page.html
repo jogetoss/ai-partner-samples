@@ -1,0 +1,40 @@
+<div id="fna" style="padding:20px;max-width:960px">
+  <h2 style="margin-top:0">Form Naming Auditor</h2>
+  <p>A system agent reads the forms and lists of an app, finds ids that break the naming standard
+     (lower snake_case, at most 40 characters) and writes the report. Every run appears in
+     <em>Monitor &gt; Agent Execution Audit Trail</em> as "Form Naming Auditor".</p>
+  <p>
+    <label for="fna-app">App</label>
+    <input id="fna-app" list="fna-apps" placeholder="app id, for example crm" style="margin:0 8px;min-width:240px">
+    <datalist id="fna-apps"></datalist>
+    <select id="fna-lang"><option value="en">English</option><option value="id">Bahasa Indonesia</option></select>
+    <button id="fna-run" type="button" style="margin-left:8px">Run audit</button>
+  </p>
+  <div id="fna-status" style="color:#666;margin:8px 0"></div>
+  <pre id="fna-out" style="white-space:pre-wrap;background:#f6f6f6;padding:12px;border:1px solid #ddd;display:none"></pre>
+</div>
+<script>
+(function () {
+  var base = "__BASE__";
+  var $ = function (id) { return document.getElementById(id); };
+  fetch(base + "/api/apps", { credentials: "same-origin" }).then(function (r) { return r.json(); }).then(function (d) {
+    (d.apps || []).forEach(function (a) {
+      var o = document.createElement("option"); o.value = a.id; o.label = a.name; $("fna-apps").appendChild(o);
+    });
+  }).catch(function () {});
+  $("fna-run").onclick = function () {
+    var app = $("fna-app").value.trim();
+    if (!app) { $("fna-status").textContent = "Pick or type an app id first."; return; }
+    $("fna-run").disabled = true; $("fna-out").style.display = "none";
+    $("fna-status").textContent = "Running the agent, this takes 10 to 40 seconds...";
+    fetch(base + "/api/audit?appId=" + encodeURIComponent(app) + "&lang=" + $("fna-lang").value, { credentials: "same-origin" })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        $("fna-status").textContent = d.error ? "Error: " + d.error : (d.ok ? "Done. Run id: " + d.runId : "The AI service did not return a report. Run id: " + d.runId);
+        if (d.report) { $("fna-out").textContent = d.report; $("fna-out").style.display = "block"; }
+      })
+      .catch(function (e) { $("fna-status").textContent = "Request failed: " + e; })
+      .then(function () { $("fna-run").disabled = false; });
+  };
+})();
+</script>

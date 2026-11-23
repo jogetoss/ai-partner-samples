@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.joget.samples</groupId>
+    <artifactId>composer-tool</artifactId>
+    <packaging>bundle</packaging>
+    <version>1.0.0</version>
+    <name>composer-tool</name>
+    <description>Sample Agent Builder tool that the composers can call through a skill-linked tool template.</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.release>11</maven.compiler.release>
+        <!--
+            The Joget platform version to compile against. Override it on the command line with the version that is
+            in your local Maven repository, for example:  mvn clean package "-Djoget.version=9.1.2"
+            (00-setup/install-joget-jars installs the jars of your own Joget installation and prints the version).
+        -->
+        <joget.version>9.1.2</joget.version>
+        <!-- The Agent Builder API jar, installed by 00-setup/install-api-jar. -->
+        <agent-builder.version>8.2.5-ALPHA</agent-builder.version>
+        <!-- Public libraries the platform classes refer to. Compile only; Joget supplies its own copies at run time. -->
+        <spring.version>5.3.39</spring.version>
+        <json.version>20231013</json.version>
+        <osgi.version>6.0.0</osgi.version>
+    </properties>
+
+    <!--
+        No <repositories> on purpose: everything except the Joget artifacts comes from Maven Central, and the Joget
+        artifacts come from your local Maven repository (see 00-setup). If you have a login for the Joget Maven
+        repository, add that repository and its credentials in your own Maven settings.xml.
+    -->
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.1</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>5.1.9</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Bundle-SymbolicName>org.joget.samples.composertool</Bundle-SymbolicName>
+                        <!-- Nothing is exported: no other bundle calls into this one. -->
+                        <Private-Package>org.joget.samples.composertool.*</Private-Package>
+                        <Export-Package>!*</Export-Package>
+                        <Bundle-Activator>org.joget.samples.composertool.Activator</Bundle-Activator>
+                        <!--
+                            Agent Builder packages are resolved lazily (DynamicImport-Package), so this bundle always starts,
+                            even when Agent Builder is stopped. javax.servlet is named on purpose: Joget DX 9 converts a jar
+                            to jakarta at install only when its manifest mentions javax.servlet, and version="0" stops the
+                            bundle plugin writing a [4.0,5) range.
+                        -->
+                        <Import-Package>!*,javax.servlet;version="0",javax.servlet.http;version="0",org.osgi.framework;version="1.3.0"</Import-Package>
+                        <DynamicImport-Package>*</DynamicImport-Package>
+                        <Joget-Name>Acme Standards Tool</Joget-Name>
+                        <Joget-Description>Agent Builder tool that returns Acme option lists and standards; reachable from the composers through a skill-linked tool template</Joget-Description>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+        <resources>
+            <!-- messages carry ${project.version}, so they are filtered; everything else is copied as is -->
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <excludes><exclude>messages/*.properties</exclude></excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes><include>messages/*.properties</include></includes>
+            </resource>
+        </resources>
+    </build>
+
+    <dependencies>
+        <!--
+            Joget platform, compile only. Each artifact is named explicitly and its own dependency tree is excluded,
+            so the build needs exactly these jars from your local Maven repository and nothing else from Joget.
+        -->
+        <dependency>
+            <groupId>org.joget</groupId>
+            <artifactId>wflow-core</artifactId>
+            <version>${joget.version}</version>
+            <scope>provided</scope>
+            <exclusions><exclusion><groupId>*</groupId><artifactId>*</artifactId></exclusion></exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.joget</groupId>
+            <artifactId>wflow-commons</artifactId>
+            <version>${joget.version}</version>
+            <scope>provided</scope>
+            <exclusions><exclusion><groupId>*</groupId><artifactId>*</artifactId></exclusion></exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.joget</groupId>
+            <artifactId>wflow-plugin-base</artifactId>
+            <version>${joget.version}</version>
+            <scope>provided</scope>
+            <exclusions><exclusion><groupId>*</groupId><artifactId>*</artifactId></exclusion></exclusions>
+        </dependency>
+        <dependency>
+            <!-- Compile only: at run time the classes come from the installed Agent Builder plugin. Never embed this jar. -->
+            <groupId>org.joget.ai.agent</groupId>
+            <artifactId>agent-builder-api</artifactId>
+            <version>${agent-builder.version}</version>
+            <scope>provided</scope>
+            <exclusions><exclusion><groupId>*</groupId><artifactId>*</artifactId></exclusion></exclusions>
+        </dependency>
+
+        <!-- Public libraries (Maven Central), compile only. -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>${json.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.core</artifactId>
+            <version>${osgi.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.10.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>

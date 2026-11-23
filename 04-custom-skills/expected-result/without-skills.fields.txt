@@ -1,0 +1,8 @@
+requester_name [TextField] "Requester Name" 
+department [SelectBox] "Department" finance=Finance | hr=Human Resources | it=Information Technology | operations=Operations | marketing=Marketing | legal=Legal | procurement=Procurement
+cost_centre [SelectBox] "Cost Centre" cc001=CC001 – Corporate | cc002=CC002 – Technology | cc003=CC003 – Operations | cc004=CC004 – Sales & Marketing | cc005=CC005 – Human Resources | cc006=CC006 – Finance & Accounting
+item_description [TextArea] "Item Description" 
+total_amount [TextField] "Total Amount" 
+status [SelectBox] "Status" draft=Draft | pending_approval=Pending Approval | approved=Approved | rejected=Rejected | cancelled=Cancelled
+created_by [HiddenField] "Created By" 
+submission_date [DatePicker] "Submission Date" 

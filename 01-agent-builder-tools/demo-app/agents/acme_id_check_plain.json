@@ -1,0 +1,111 @@
+{
+  "className": "org.joget.ai.agent.AgentBuilder",
+  "properties": {
+    "id": "AI-acme_id_check_plain",
+    "name": "Acme 2 ID Check (tool only)",
+    "description": "Same tool without guard and enhancer, to show what the answer looks like without them.",
+    "enableTokenStreaming": "",
+    "agentDebugMode": "",
+    "inputs": [
+      {
+        "name": "query",
+        "label": "Message",
+        "type": "textfield",
+        "description": "The user message"
+      }
+    ],
+    "variables": [],
+    "maxIterations": "10",
+    "maxToolCallDepth": "10",
+    "parallelToolCalls": "",
+    "parallelToolCallThreads": "4",
+    "llmRetryMaxAttempts": "2",
+    "llmRetryInitialDelayMs": "1000",
+    "llmRetryMaxDelayMs": "10000",
+    "llmConnectTimeoutSeconds": "30",
+    "llmSocketTimeoutSeconds": "120",
+    "contextWindowEnabled": "true",
+    "contextWindowStrategy": "TRUNCATE",
+    "contextWindowMaxMessages": "0",
+    "contextWindowMaxChars": "400000",
+    "contextWindowWarnThresholdPct": "80",
+    "contextWindowPreserveSystem": "true",
+    "contextWindowPreserveFirst": "true",
+    "logo": ""
+  },
+  "agent": {
+    "llm": [
+      {
+        "className": "org.joget.ai.agent.lib.AnthropicAgentLLM",
+        "properties": {
+          "id": "B8D8766A7C2D4C29D2C978B2E87F47F0",
+          "provider": "Anthropic",
+          "aiConfigName": "Anthropic",
+          "apiKey": "",
+          "apiUrl": "",
+          "model": "claude-sonnet-4-6",
+          "anthropicVersion": "2023-06-01",
+          "maxTokens": "2048",
+          "temperature": "0.2",
+          "topK": "",
+          "topP": "",
+          "thinkingBudgetTokens": "",
+          "reasoningEffort": ""
+        }
+      }
+    ],
+    "prompt": []
+  },
+  "tasks": [
+    {
+      "properties": {
+        "id": "a493e34e8de5b1475adb4a4289d589d3",
+        "label": "Answer"
+      },
+      "prompt": [
+        {
+          "className": "org.joget.ai.agent.lib.TextPromptAgentPrompt",
+          "properties": {
+            "id": "76CA4A443C6A51379ADF11DB92798195",
+            "isEnabled": "true",
+            "personalizedName": "",
+            "msgRole": "SYSTEM",
+            "prompt": "You are an HR and finance helper at an Indonesian company. Answer in Bahasa Indonesia, briefly. When the user gives a NIK or an NPWP, ALWAYS call validate_indonesian_id and base your answer only on its result. Quote the number exactly as the tool returned it."
+          }
+        },
+        {
+          "className": "org.joget.ai.agent.lib.TextPromptAgentPrompt",
+          "properties": {
+            "id": "4866E19B8DADEFA2B64FA61CB8C39FFE",
+            "isEnabled": "true",
+            "personalizedName": "",
+            "msgRole": "USER",
+            "prompt": "Pesan pengguna: ${query}"
+          }
+        }
+      ],
+      "tool": [
+        {
+          "className": "org.joget.samples.agenttools.IndonesianIdValidatorTool",
+          "properties": {
+            "id": "5C744CD1E1EF91A21C4709B0CC4BD456",
+            "isEnabled": "true",
+            "personalizedName": "",
+            "idTypes": "BOTH",
+            "mode": "strict",
+            "returnFullNumber": "true",
+            "extraProvinces": [
+              {
+                "code": "99",
+                "name": "Provinsi Contoh (demo)"
+              }
+            ]
+          }
+        }
+      ],
+      "enhancer": [],
+      "decision": [],
+      "guard": []
+    }
+  ]
+}

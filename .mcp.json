@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "joget-composer": {
+      "type": "http",
+      "url": "http://localhost:8080/jw/mcp/composer/mcp",
+      "headers": {
+        "X-Builder-Api-Key": "${JOGET_BUILDER_API_KEY}"
+      }
+    }
+  }
+}

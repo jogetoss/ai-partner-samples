@@ -1,0 +1,44 @@
+[
+    {
+        "title": "@@guard.config@@",
+        "properties": [
+            {
+                "name": "direction",
+                "label": "@@guard.direction@@",
+                "description": "@@guard.direction.desc@@",
+                "type": "selectbox",
+                "value": "both",
+                "options": [
+                    {"value": "both", "label": "Request and answer"},
+                    {"value": "input", "label": "Request only"},
+                    {"value": "output", "label": "Answer only"}
+                ]
+            }
+        ]
+    },
+    {
+        "title": "@@guard.violation@@",
+        "properties": [
+            {
+                "name": "onViolation",
+                "label": "@@guard.onViolation@@",
+                "type": "selectbox",
+                "required": "True",
+                "value": "sanitize",
+                "options": [
+                    {"value": "block", "label": "@@guard.block@@"},
+                    {"value": "sanitize", "label": "@@guard.sanitize@@"},
+                    {"value": "redirect", "label": "@@guard.redirect@@"}
+                ]
+            },
+            {
+                "name": "redirectTaskId",
+                "label": "@@guard.redirectTaskId@@",
+                "type": "textfield",
+                "control_field": "onViolation",
+                "control_value": "redirect",
+                "control_use_regex": "false"
+            }
+        ]
+    }
+]

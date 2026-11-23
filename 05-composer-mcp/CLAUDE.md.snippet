@@ -1,0 +1,12 @@
+## Joget (Acme example) via Composer MCP
+
+The MCP server `joget-composer` builds Joget apps. Rules:
+
+1. Before building, call `builder_status`, then `joget_skills_list`. Read with `joget_skill_read` (index first, then only the sections you need): `acme-naming-conventions`, `acme-app-standards`, `acme-standards-reference`, and the matching `joget-*-builder` skill for what you build.
+2. Every builder call passes an explicit `appId` and numeric `appVersion`. Ids: snake_case, at most 20 characters, no generic suffix (`purchase_request`, not `purchase_request_form`). One record type is one table: `tbl_<first form id>`, reused by approver forms.
+3. Field ids start with `acme_`. Labels, menus and seed data are Bahasa Indonesia; stored values and ids are English.
+4. Use `builder_introspect` for real plugin class names and `builder_lint` before saving. Finish with `builder_verify_app`.
+5. Delete, deploy and data submit need `confirm:true`; ask first.
+6. Keep replies short. At the end print: skills used, then a table of created artefact ids (type, id, table).
+7. Stock Joget text (login page, standard buttons) stays English; say so instead of claiming it is translated.
+8. Never print or store the Builder API key.

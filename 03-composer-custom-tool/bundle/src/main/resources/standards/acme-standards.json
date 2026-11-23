@@ -1,0 +1,56 @@
+{
+  "cost_centres": {
+    "description": "Acme cost centres. Stored value is the cost centre code; the label is shown to the user.",
+    "options": [
+      {"value": "CC-1000", "label": "CC-1000 - Kantor Pusat Jakarta"},
+      {"value": "CC-2000", "label": "CC-2000 - Cabang Surabaya"},
+      {"value": "CC-3000", "label": "CC-3000 - Cabang Bandung"},
+      {"value": "CC-4100", "label": "CC-4100 - Pusat Data"}
+    ]
+  },
+  "departments": {
+    "description": "Departments. Stored value is the English code, the label is Bahasa Indonesia.",
+    "options": [
+      {"value": "finance", "label": "Keuangan"},
+      {"value": "it", "label": "Teknologi Informasi"},
+      {"value": "hr", "label": "Sumber Daya Manusia"},
+      {"value": "operations", "label": "Operasional"},
+      {"value": "procurement", "label": "Pengadaan"}
+    ]
+  },
+  "leave_types": {
+    "description": "Leave types. Stored value is the English code, the label is Bahasa Indonesia.",
+    "options": [
+      {"value": "annual", "label": "Cuti Tahunan"},
+      {"value": "sick", "label": "Cuti Sakit"},
+      {"value": "maternity", "label": "Cuti Melahirkan"},
+      {"value": "unpaid", "label": "Cuti di Luar Tanggungan"},
+      {"value": "special", "label": "Cuti Khusus"}
+    ]
+  },
+  "request_status": {
+    "description": "Status values every Acme request form uses, in lifecycle order.",
+    "options": [
+      {"value": "draft", "label": "Draf"},
+      {"value": "submitted", "label": "Diajukan"},
+      {"value": "approved", "label": "Disetujui"},
+      {"value": "rejected", "label": "Ditolak"}
+    ]
+  },
+  "approval_matrix": {
+    "description": "Purchase approval matrix. Amounts are in Rupiah (IDR). Use it to decide the number of approval steps in the process; the first rule whose maxAmount is not exceeded decides who approves last.",
+    "rules": [
+      {"maxAmount": 5000000, "approvers": ["line_manager"]},
+      {"maxAmount": 50000000, "approvers": ["line_manager", "department_head"]},
+      {"maxAmount": 999999999999, "approvers": ["line_manager", "department_head", "finance_director"]}
+    ]
+  },
+  "formats": {
+    "description": "Date, number and identifier formats. Use these when you set a field's data format, display format or default value.",
+    "rules": [
+      {"item": "date", "pattern": "dd/MM/yyyy", "note": "Day first. Show the same pattern the user types."},
+      {"item": "currency", "pattern": "Rp 1.250.000,50", "note": "Rp before the amount, dot as thousands separator, comma as decimal separator."},
+      {"item": "request_number", "pattern": "REQ/{yyyy}/{00000}", "note": "Example REQ/2026/00017. Generate it with an ID generator field, never ask the user to type it."}
+    ]
+  }
+}

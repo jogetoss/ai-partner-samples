@@ -1,0 +1,15 @@
+[
+    {
+        "title": "@@enh.config@@",
+        "properties": [
+            {
+                "name": "notice",
+                "label": "@@enh.notice@@",
+                "description": "@@enh.notice.desc@@",
+                "type": "textarea",
+                "rows": "3",
+                "value": "Catatan: pengecekan hanya memeriksa format, bukan data resmi DJP atau Dukcapil."
+            }
+        ]
+    }
+]

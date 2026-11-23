@@ -1,0 +1,16 @@
+{
+  "name": "lookup_acme_standard",
+  "displayName": "Acme Standards Lookup",
+  "description": "Returns Acme option lists (cost centres, departments, leave types, request status), the purchase approval matrix and the date/currency/request-number formats.",
+  "toolClass": "org.joget.samples.composertool.AcmeStandardsTool",
+  "status": "active",
+  "composers": [
+    "org.joget.ai.agent.lib.composer.FormComposerChat",
+    "org.joget.ai.agent.lib.composer.OrchestratorChat",
+    "org.joget.ai.agent.lib.composer.ProcessComposerChat"
+  ],
+  "properties": {
+    "name": "lookup_acme_standard",
+    "overrideJson": ""
+  }
+}

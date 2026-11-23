@@ -1,0 +1,105 @@
+{
+  "className": "org.joget.ai.agent.AgentBuilder",
+  "properties": {
+    "id": "AI-acme_pii_input_block",
+    "name": "Acme 3 PII Input Block (guard only)",
+    "description": "The guard blocks the task when the request contains a full NIK.",
+    "enableTokenStreaming": "",
+    "agentDebugMode": "",
+    "inputs": [
+      {
+        "name": "query",
+        "label": "Message",
+        "type": "textfield",
+        "description": "The user message"
+      }
+    ],
+    "variables": [],
+    "maxIterations": "10",
+    "maxToolCallDepth": "10",
+    "parallelToolCalls": "",
+    "parallelToolCallThreads": "4",
+    "llmRetryMaxAttempts": "2",
+    "llmRetryInitialDelayMs": "1000",
+    "llmRetryMaxDelayMs": "10000",
+    "llmConnectTimeoutSeconds": "30",
+    "llmSocketTimeoutSeconds": "120",
+    "contextWindowEnabled": "true",
+    "contextWindowStrategy": "TRUNCATE",
+    "contextWindowMaxMessages": "0",
+    "contextWindowMaxChars": "400000",
+    "contextWindowWarnThresholdPct": "80",
+    "contextWindowPreserveSystem": "true",
+    "contextWindowPreserveFirst": "true",
+    "logo": ""
+  },
+  "agent": {
+    "llm": [
+      {
+        "className": "org.joget.ai.agent.lib.AnthropicAgentLLM",
+        "properties": {
+          "id": "FA56753C99453FBC8E7A79432798AAF8",
+          "provider": "Anthropic",
+          "aiConfigName": "Anthropic",
+          "apiKey": "",
+          "apiUrl": "",
+          "model": "claude-sonnet-4-6",
+          "anthropicVersion": "2023-06-01",
+          "maxTokens": "2048",
+          "temperature": "0.2",
+          "topK": "",
+          "topP": "",
+          "thinkingBudgetTokens": "",
+          "reasoningEffort": ""
+        }
+      }
+    ],
+    "prompt": []
+  },
+  "tasks": [
+    {
+      "properties": {
+        "id": "93330ebc9e5b1bb25cca7910316747f2",
+        "label": "Answer"
+      },
+      "prompt": [
+        {
+          "className": "org.joget.ai.agent.lib.TextPromptAgentPrompt",
+          "properties": {
+            "id": "E2A742E6304DC034B4223445FF4DB12B",
+            "isEnabled": "true",
+            "personalizedName": "",
+            "msgRole": "SYSTEM",
+            "prompt": "You are a helpful assistant. Answer in Bahasa Indonesia, briefly."
+          }
+        },
+        {
+          "className": "org.joget.ai.agent.lib.TextPromptAgentPrompt",
+          "properties": {
+            "id": "8BB168A82604C24B42773DD7FA806AD0",
+            "isEnabled": "true",
+            "personalizedName": "",
+            "msgRole": "USER",
+            "prompt": "Pesan pengguna: ${query}"
+          }
+        }
+      ],
+      "tool": [],
+      "enhancer": [],
+      "decision": [],
+      "guard": [
+        {
+          "className": "org.joget.samples.agenttools.NikPiiGuard",
+          "properties": {
+            "id": "20FF87DB11E4C40826CDCA76F5246729",
+            "isEnabled": "true",
+            "personalizedName": "",
+            "direction": "input",
+            "onViolation": "block",
+            "redirectTaskId": ""
+          }
+        }
+      ]
+    }
+  ]
+}

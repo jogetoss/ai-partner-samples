@@ -1,0 +1,8 @@
+acme_requester_name [TextField] "Nama Pemohon" 
+acme_department [SelectBox] "Departemen" finance=Keuangan | it=Teknologi Informasi | hr=Sumber Daya Manusia | operations=Operasional | procurement=Pengadaan
+acme_cost_centre [SelectBox] "Pusat Biaya" CC-1000=CC-1000 - Kantor Pusat Jakarta | CC-2000=CC-2000 - Cabang Surabaya | CC-3000=CC-3000 - Cabang Bandung | CC-4100=CC-4100 - Pusat Data
+acme_item_description [TextArea] "Deskripsi Barang/Jasa" 
+acme_total_amount [TextField] "Total Jumlah (Rp)" 
+acme_status [SelectBox] "Status" draft=Draf | submitted=Diajukan | approved=Disetujui | rejected=Ditolak
+acme_created_by [HiddenField] "Dibuat Oleh" 
+acme_submitted_date [DatePicker] "Tanggal Pengajuan" 

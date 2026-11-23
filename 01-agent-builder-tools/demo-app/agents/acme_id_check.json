@@ -1,0 +1,133 @@
+{
+  "className": "org.joget.ai.agent.AgentBuilder",
+  "properties": {
+    "id": "AI-acme_id_check",
+    "name": "Acme 1 ID Check (tool + guard + enhancer)",
+    "description": "Validates NIK/NPWP with the custom tool; the guard masks any full NIK in the answer; the enhancer formats NPWP and adds a Bahasa notice.",
+    "enableTokenStreaming": "",
+    "agentDebugMode": "",
+    "inputs": [
+      {
+        "name": "query",
+        "label": "Message",
+        "type": "textfield",
+        "description": "The user message"
+      }
+    ],
+    "variables": [],
+    "maxIterations": "10",
+    "maxToolCallDepth": "10",
+    "parallelToolCalls": "",
+    "parallelToolCallThreads": "4",
+    "llmRetryMaxAttempts": "2",
+    "llmRetryInitialDelayMs": "1000",
+    "llmRetryMaxDelayMs": "10000",
+    "llmConnectTimeoutSeconds": "30",
+    "llmSocketTimeoutSeconds": "120",
+    "contextWindowEnabled": "true",
+    "contextWindowStrategy": "TRUNCATE",
+    "contextWindowMaxMessages": "0",
+    "contextWindowMaxChars": "400000",
+    "contextWindowWarnThresholdPct": "80",
+    "contextWindowPreserveSystem": "true",
+    "contextWindowPreserveFirst": "true",
+    "logo": ""
+  },
+  "agent": {
+    "llm": [
+      {
+        "className": "org.joget.ai.agent.lib.AnthropicAgentLLM",
+        "properties": {
+          "id": "8A9E7BC2D32D90EAAFFF534A2EE47612",
+          "provider": "Anthropic",
+          "aiConfigName": "Anthropic",
+          "apiKey": "",
+          "apiUrl": "",
+          "model": "claude-sonnet-4-6",
+          "anthropicVersion": "2023-06-01",
+          "maxTokens": "2048",
+          "temperature": "0.2",
+          "topK": "",
+          "topP": "",
+          "thinkingBudgetTokens": "",
+          "reasoningEffort": ""
+        }
+      }
+    ],
+    "prompt": []
+  },
+  "tasks": [
+    {
+      "properties": {
+        "id": "0048eea21b6e20f98b83850fed787954",
+        "label": "Answer"
+      },
+      "prompt": [
+        {
+          "className": "org.joget.ai.agent.lib.TextPromptAgentPrompt",
+          "properties": {
+            "id": "51C449CC7DB71AACB4B48454DADEBB25",
+            "isEnabled": "true",
+            "personalizedName": "",
+            "msgRole": "SYSTEM",
+            "prompt": "You are an HR and finance helper at an Indonesian company. Answer in Bahasa Indonesia, briefly. When the user gives a NIK or an NPWP, ALWAYS call validate_indonesian_id and base your answer only on its result. Quote the number exactly as the tool returned it."
+          }
+        },
+        {
+          "className": "org.joget.ai.agent.lib.TextPromptAgentPrompt",
+          "properties": {
+            "id": "D6D0ADC52017050A8036DE01D31B8315",
+            "isEnabled": "true",
+            "personalizedName": "",
+            "msgRole": "USER",
+            "prompt": "Pesan pengguna: ${query}"
+          }
+        }
+      ],
+      "tool": [
+        {
+          "className": "org.joget.samples.agenttools.IndonesianIdValidatorTool",
+          "properties": {
+            "id": "560E2A20A0A80A62FE371C35B97AF46C",
+            "isEnabled": "true",
+            "personalizedName": "",
+            "idTypes": "BOTH",
+            "mode": "strict",
+            "returnFullNumber": "true",
+            "extraProvinces": [
+              {
+                "code": "99",
+                "name": "Provinsi Contoh (demo)"
+              }
+            ]
+          }
+        }
+      ],
+      "enhancer": [
+        {
+          "className": "org.joget.samples.agenttools.NpwpFormatEnhancer",
+          "properties": {
+            "id": "468A46F2FE6AA9BD182AFBF8F938D32F",
+            "isEnabled": "true",
+            "personalizedName": "",
+            "notice": "Catatan: pengecekan hanya memeriksa format, bukan data resmi DJP atau Dukcapil."
+          }
+        }
+      ],
+      "decision": [],
+      "guard": [
+        {
+          "className": "org.joget.samples.agenttools.NikPiiGuard",
+          "properties": {
+            "id": "6BE1632E2F26794FF8DAD5DD25CD33DD",
+            "isEnabled": "true",
+            "personalizedName": "",
+            "direction": "output",
+            "onViolation": "sanitize",
+            "redirectTaskId": ""
+          }
+        }
+      ]
+    }
+  ]
+}

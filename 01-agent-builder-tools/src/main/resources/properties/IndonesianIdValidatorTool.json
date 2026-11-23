@@ -1,0 +1,47 @@
+[
+    {
+        "title": "@@tool.config@@",
+        "properties": [
+            {
+                "name": "idTypes",
+                "label": "@@tool.idTypes@@",
+                "description": "@@tool.idTypes.desc@@",
+                "type": "selectbox",
+                "value": "BOTH",
+                "options": [
+                    {"value": "BOTH", "label": "NIK and NPWP"},
+                    {"value": "NIK", "label": "NIK only"},
+                    {"value": "NPWP", "label": "NPWP only"}
+                ]
+            },
+            {
+                "name": "mode",
+                "label": "@@tool.mode@@",
+                "description": "@@tool.mode.desc@@",
+                "type": "selectbox",
+                "value": "strict",
+                "options": [
+                    {"value": "format", "label": "Format only"},
+                    {"value": "strict", "label": "Strict (province, birth date, tax office)"}
+                ]
+            },
+            {
+                "name": "returnFullNumber",
+                "label": "@@tool.full@@",
+                "description": "@@tool.full.desc@@",
+                "type": "checkbox",
+                "options": [{"value": "true", "label": ""}]
+            },
+            {
+                "name": "extraProvinces",
+                "label": "@@tool.extra@@",
+                "description": "@@tool.extra.desc@@",
+                "type": "grid",
+                "columns": [
+                    {"key": "code", "label": "@@tool.code@@", "required": "True"},
+                    {"key": "name", "label": "@@tool.name@@", "required": "True"}
+                ]
+            }
+        ]
+    }
+]

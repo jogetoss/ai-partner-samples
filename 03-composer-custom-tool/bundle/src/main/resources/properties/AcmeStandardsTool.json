@@ -1,0 +1,30 @@
+[
+    {
+        "title": "@@composerTool.config@@",
+        "properties": [
+            {
+                "name": "name",
+                "label": "@@composerTool.name@@",
+                "description": "@@composerTool.name.desc@@",
+                "type": "textfield",
+                "value": "lookup_acme_standard",
+                "regex_validation": "^[a-zA-Z0-9_-]{1,64}$",
+                "validation_message": "@@composerTool.name.invalid@@"
+            },
+            {
+                "name": "description",
+                "label": "@@composerTool.description@@",
+                "description": "@@composerTool.description.desc@@",
+                "type": "textarea",
+                "rows": "5"
+            },
+            {
+                "name": "overrideJson",
+                "label": "@@composerTool.override@@",
+                "description": "@@composerTool.override.desc@@",
+                "type": "codeeditor",
+                "mode": "json"
+            }
+        ]
+    }
+]

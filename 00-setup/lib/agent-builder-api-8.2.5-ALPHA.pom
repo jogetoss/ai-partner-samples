@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.joget.ai.agent</groupId>
+    <artifactId>agent-builder-api</artifactId>
+    <version>8.2.5-ALPHA</version>
+    <packaging>jar</packaging>
+    <name>agent-builder-api</name>
+    <description>Compile-time API of Joget Agent Builder 8.2.5-ALPHA: the classes an extension bundle extends or calls.
+        This pom declares no dependencies on purpose. An extension compiles against this jar with scope "provided";
+        at run time the classes come from the installed Agent Builder plugin, which already carries its own libraries.</description>
+</project>
