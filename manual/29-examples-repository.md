@@ -233,8 +233,6 @@ Add `-ViaCopy` (PowerShell) or `--via-copy` (shell) to copy the jar into `<JOGET
 
 To check what is installed, open **Settings > Manage Plugins**. The list **Installed Plugins** has one row per jar: **Indonesian ID Tools for Agent Builder** (sample 01), **Form Naming Auditor (system agent)** (sample 02), **Acme Standards Tool** (sample 03) and **Private Gateway LLM Provider** (sample 06). **Filter by Type** lists the jars that contain a plugin of a type: a custom tool is an **AI Agent Tool**, a guard an **AI Agent Guard**, an enhancer an **AI Agent Enhancer**, an LLM plugin an **AI Agent LLM**, a provider an **LLM Provider Plugin** and a Settings page a **Console Page**.
 
-![The four sample jars in Manage Plugins, with Agent Builder and Composer MCP](screenshots/29-manage-plugins-samples.png)
-
 The optional script `node 00-setup/check-install.js` lists the plugin classes inside the jars. It prints one line per expected plugin with the type in square brackets, for example `FOUND    01-agent-builder-tools: NIK PII Guard [AI Agent Guard] version 1.0-SNAPSHOT`, and `MISSING` for a plugin that is not installed.
 
 ## Sample 01: a custom Tool, Guard and Enhancer
@@ -474,8 +472,6 @@ The background is in [Skills, Central Instructions and Tool Templates](22-skills
    ```text
    Create a purchase request form with requester name (required), department (dropdown), cost centre (dropdown), item description (textarea), total amount and status.
    ```
-
-![The tool template for the sample tool](screenshots/29-add-tool-template.png)
 
 Step 3 can also be done with the optional script: `node scripts/central-config.js tool-template tool-template/lookup_acme_standard.json`.
 

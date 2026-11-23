@@ -167,8 +167,6 @@ Agent Builder refreshes a default skill from its own plugin when its built-in ve
 - **Search is not exact.** The bundled hits come first. Tell the assistant to read your skills by name (your project rules can say so).
 - **Global Central Instructions are not served over MCP.** In **AI Central Config > Skills**, the **Central Instructions** section has a **Global** box and one box for each composer. The prompts `joget_form_instructions`, `joget_list_instructions`, `joget_ui_instructions`, `joget_theme_instructions` and `joget_process_instructions` return the bundled global rules plus the text of the matching composer box (**AI Composer - Form Builder Agent**, **AI Composer - Datalist Builder Agent**, **AI Composer - UI Builder Agent**, **AI Composer - Theme Builder Agent**, **AI Composer - Process Builder Agent**). The text you entered in the **Global** box is not included, and neither are the **Agent Builder** and **AI Orchestrator Agent** boxes. `joget_global_instructions` returns the bundled global rules only. Put rules that must reach MCP clients in a skill, or in the project's `CLAUDE.md`.
 
-![The Skills tab of AI Central Config: the skills listed here are the ones that `joget_skills_list` returns with `kind: central`](screenshots/20-central-config-skills-tab.png)
-
 ## Using the skill tools
 
 The arguments of the four skill tools are in [Composer MCP: Tool Reference (continued)](19b-composer-mcp-tools-continued.md). These are the usual patterns.

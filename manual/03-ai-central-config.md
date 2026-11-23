@@ -260,8 +260,6 @@ Central Instructions are rules that Joget adds to the start of every conversatio
 
 Click **Save** in the Central Instructions header. The message is "Central Instructions saved successfully".
 
-![The Skills tab: Central Instructions at the top, the skill list below](screenshots/22-skills-tab-overview.png)
-
 How the text reaches the model: for a run, Joget joins the **Global** text and the text of the target (the composer that runs, or Agent Builder for agents), separated by a blank line, and adds the result as a system message before the prompts. If both are empty, nothing is added.
 
 ### Skills list
@@ -290,8 +288,6 @@ The fields of the **Add Skill** and **Edit Skill** popups:
 | **Draft** | Hidden from all agents and composers. |
 | **Deprecated** | Not discoverable, but still executable by name. |
 
-![The Add Skill popup, filled in: name, description, instruction text, Available For and Status](screenshots/03-add-skill-popup.png)
-
 The first time the plugin starts it creates these default skills: `joget-form-builder`, `joget-form-validators-binders`, `joget-datalist-builder`, `joget-process-builder`, `joget-userview-builder`, `joget-form-field-ui`, `joget-theme-builder`, `joget-orchestrator`, `joget-app-design`, `joget-known-solutions` and `joget-hash-variables`.
 
 ### Limitations and things to know
@@ -319,8 +315,6 @@ The tab lists the templates (header **Tool Templates**, button **Add Tool Templa
 | **Status** | **Active**, **Draft** or **Deprecated**. | **Active** | The same meanings as for skills: Draft is hidden, Deprecated is kept for existing use. |
 
 Create saves with the **Create** button, **Edit Tool Template** has **Save**, and **Delete Tool Template** has **Cancel** and **Delete**.
-
-![The Add Tool Template popup with the tool type Acme Standards Lookup selected and its Tool Configuration shown](screenshots/03-add-tool-template.png)
 
 The plugin creates one template on its first start (templates that you or other plugins add are listed next to it): **Search Hash Variables** (slug `search_hash_variables`, a documentation tool for the Joget hash variable reference), available to the composers and the Orchestrator.
 

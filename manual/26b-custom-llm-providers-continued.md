@@ -399,8 +399,6 @@ The second part of the same class. `readReply` accepts `content: null` and tool 
 
 ![Step 1 of the Add AI Service form with the custom provider selected](screenshots/26-gateway-model-class.png)
 
-![Step 2 of the Add AI Service form for PrivateGateway: the credential fields and Advanced Configuration with Repetition Penalty](screenshots/26-gateway-service-fields.png)
-
 On the canvas, drag the **Private Gateway LLM** element from the palette section **LLM Services** into the box **Define Agent** of an agent (onto **Add a LLM service to here**, or onto the **LLM SERVICE** card when the agent already has one) and fill in its properties (**API Key**, **Tenant ID (X-Tenant-Id header)**, **Model**, **API URL** and the others). A canvas agent uses these properties, not an AI Service.
 
 ![The LLM plugin of the custom provider in the palette section LLM Services](screenshots/26-palette-gateway-llm.png)

@@ -7,7 +7,7 @@ are `org.joget.samples.*`.
 You do not need the source code of Agent Builder or Composer MCP. Everything here works with the two plugin jars (Agent Builder and Composer MCP),
 this repository and a Joget DX Enterprise installation.
 
-The full manual (38 pages with screenshots) is in the [manual](manual/README.md) folder. Start with [Welcome and What Is Included](manual/01-welcome.md).
+The full manual (38 pages) is in the [manual](manual/README.md) folder. Start with [Welcome and What Is Included](manual/01-welcome.md).
 
 > **Note:** Agent Builder 8.2.5-ALPHA is an early build, two releases ahead of the current stable release. Its features are subject to change and can be unstable. Use it on development and test servers only, not in production.
 

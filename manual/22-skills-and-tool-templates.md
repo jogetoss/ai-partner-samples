@@ -36,8 +36,6 @@ Skills are files, so they are not part of an app export (`.jwa`). They belong to
 
 Open **Settings > AI Central Config** and select the tab **Skills** ("Define reusable skill instructions and global system instructions for your AI Composers"). You need the Admin or App Creator role. The tab has **Central Instructions** at the top and the list of skills below it.
 
-![The Skills tab: Central Instructions above the skill list (the first two cards are custom skills)](screenshots/22-skills-tab-overview.png)
-
 #### Central Instructions section
 
 | Control | What it does |
@@ -47,8 +45,6 @@ Open **Settings > AI Central Config** and select the tab **Skills** ("Define reu
 | **Save** | Saves the Global text and all blocks together. |
 
 Every field is optional. Saving replaces the stored values with what is on the screen, so clear a field and save to remove its text.
-
-![Central Instructions: the Global text and the Form Builder block, with a short rule typed in (not saved)](screenshots/22-central-instructions.png)
 
 #### The skill list
 
@@ -70,8 +66,6 @@ Select **Add Skill**. The form opens with a two-section template body.
 
 The popup button **Add Skill** creates the skill ("Skill created successfully") and writes the file. Renaming a skill renames its folder. Messages you may see: "Nothing was saved - the skill file could not be written."
 
-![The Add Skill popup, filled in](screenshots/22-add-skill-popup.png)
-
 ### The Tool Templates tab
 
 Select the tab **Tool Templates** and then **Add Tool Template**.
@@ -85,8 +79,6 @@ Select the tab **Tool Templates** and then **Add Tool Template**.
 | **Tool Configuration** | The tool's own property form, as on the canvas | the tool's defaults | Appears when you choose a **Tool Type**. Includes the function name the model calls. For **Acme Standards Lookup**: **Function name** (prefilled `lookup_acme_standard`), **Function description** and **Override standards (JSON)** |
 | **Available For** | Composers and Agent Builder for which the template is listed | none ticked | The same seven check boxes as on the skill form. Used when templates are listed for a target. Skill-linked injection ignores it |
 | **Status** | **Active**, **Draft**, **Deprecated** | Active | Only active templates appear in a skill's **Associated Tool Templates** list |
-
-![The Add Tool Template popup with the tool type Acme Standards Lookup selected](screenshots/22-add-tool-template.png)
 
 There is no import or export button for skills, central instructions or tool templates. See "Moving skills between environments".
 

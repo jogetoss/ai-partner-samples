@@ -455,8 +455,6 @@ Replace `9.1.2` with the Joget version that `install-joget-jars` printed. On Pow
 3. Check that the plugin is in the list **Installed Plugins**. The list has one row per jar: **Plugin Name** is the `Joget-Name` of your `pom.xml`, and **File Name** is the jar. The server log (`catalina.out` or `joget.log`) shows a line such as `Cost centre lookup registered: 1 plugin(s)`. If it shows `Agent Builder is not available, nothing registered`, see Troubleshooting.
 4. Open an agent in Agent Builder. Your element appears in the palette: tools under **Tools**, guards under **Guards**, enhancers under **Enhancers**, prompts under **Prompts**, decisions under **Decisions** and LLM plugins under **LLM Services**. Use **Search Palette** with your element's label.
 
-![Manage Plugins with the four sample jars of the examples repository, Agent Builder and Composer MCP](screenshots/23-manage-plugins-upload.png)
-
 The palette has the sections **LLM Services**, **Prompts**, **Tools**, **Tool Templates**, **Enhancers**, **Decisions** and **Guards**.
 
 ![Search Palette finds the sample tool Indonesian ID Validator under Tools; the task on the canvas uses the sample guard and tool](screenshots/23-palette-sample-blocks.png)

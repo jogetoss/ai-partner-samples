@@ -238,8 +238,6 @@ Open **Settings > AI Central Config**, select **Tool Templates**, click **Add To
 
 Click **Create**.
 
-![The Add Tool Template form for the example tool](screenshots/28-tool-template-form.png)
-
 ### Step 7: Write and install the skill
 
 The file is `04-custom-skills/acme-standards-lookup/SKILL.md`. Its front matter keys:

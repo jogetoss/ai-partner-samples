@@ -47,7 +47,6 @@ What you learn from the code:
 | `demo-app/acme_tools.jwa` | A Joget app with three ready agents that use the elements. |
 | `demo-app/agents/*.json` | The same three agent definitions as readable JSON. |
 | `demo-app/build-demo-app.js`, `demo-app/run-agent.js` | Optional scripts. |
-| `images/agent-canvas.png` | How the first demo agent looks in the builder. |
 
 ## Prerequisites
 
@@ -119,8 +118,7 @@ The demo agents:
 Steps:
 
 1. Open the app `acme_tools` in the App Composer, then open the agent **Acme 1 ID Check (tool + guard +
-   enhancer)**. The task **Answer** shows a GUARD card, two PROMPT cards, a TOOL card and an ENHANCER card, as in
-   `images/agent-canvas.png`.
+   enhancer)**. The task **Answer** shows a GUARD card, two PROMPT cards, a TOOL card and an ENHANCER card.
 2. Type `Indonesian` in **Search Palette**: **Indonesian ID Validator** is listed under **Tools**. Search `NIK`:
    **NIK PII Guard** is under **Guards**. Search `NPWP`: **NPWP Format and Notice** is under **Enhancers**.
 3. Click the TOOL card to see its four properties.
