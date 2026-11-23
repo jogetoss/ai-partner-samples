@@ -30,6 +30,7 @@ Other files:
 |---|---|
 | `.mcp.json` | Project configuration that connects an MCP client (for example Claude Code) to Composer MCP on `http://localhost:8080/jw`. The key comes from the `JOGET_BUILDER_API_KEY` environment variable. See [05-composer-mcp](05-composer-mcp/README.md). |
 | `.claude/skills/` | Three developer cheat sheets in skill format: Agent Builder extensions, system agents, and plugin rules for Joget DX 9, clusters and Joget Cloud. Claude Code loads them automatically in this folder; they are also plain Markdown you can read. |
+| `docs/partner-session-deck.pptx` | Slide deck for partner sessions (16 slides with speaker notes). The facilitator guide is [manual page 33](manual/33-running-a-partner-session.md). |
 | `package.json`, `scripts/` | Dependencies and a shared helper for the optional Node scripts. |
 
 ## Prerequisites
